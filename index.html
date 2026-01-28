@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modulo 1 - L'IA è già tra noi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            padding-bottom: 120px;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 1200px;
+            width: 100%;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            display: none;
+        }
+        
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            color: #764ba2;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        p, li {
+            font-size: 1.4em;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            margin-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 15px;
+        }
+        
+        .highlight {
+            background: #ffeaa7;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            gap: 15px;
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        button:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+        
+        .counter {
+            font-size: 1.3em;
+            color: #667eea;
+            font-weight: bold;
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        .box {
+            background: #f8f9fa;
+            border-left: 6px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .card h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+        
+        .card p {
+            color: white;
+            font-size: 1.2em;
+        }
+        
+        @media (max-width: 768px) {
+            .slide-container {
+                padding: 15px;
+                padding-bottom: 100px;
+            }
+            
+            .slide {
+                padding: 25px;
+                max-height: calc(100vh - 120px);
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+            
+            p, li {
+                font-size: 1.1em;
+            }
+            
+            button {
+                padding: 12px 18px;
+                font-size: 1em;
+            }
+            
+            .counter {
+                font-size: 1.1em;
+                min-width: 50px;
+            }
+            
+            .navigation {
+                padding: 15px;
+                gap: 10px;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card h3 {
+                font-size: 1.3em;
+            }
+            
+            .card p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Slide 1: Titolo -->
+        <div class="slide active">
+            <h1>🤖 L'IA è già tra noi!</h1>
+            <h1 style="font-size: 1.6em; margin-top: 30px;">Scopriamola insieme</h1>
+            <p style="text-align: center; margin-top: 40px; font-size: 1.6em;">
+                Corso di Intelligenza Artificiale<br>
+                per la Terza Età
+            </p>
+            <p style="text-align: center; margin-top: 30px; font-size: 1.2em; color: #764ba2;">
+                LUTE - Libera Università per la Terza Età<br>
+                Modulo 1 di 6
+            </p>
+        </div>
+
+        <!-- Slide 2: Cos'è l'IA -->
+        <div class="slide">
+            <h2>💡 Cos'è l'Intelligenza Artificiale?</h2>
+            <div class="box">
+                <p style="font-size: 1.6em; text-align: center;">
+                    <span class="highlight">L'IA è come un assistente molto preparato<br>che impara dall'esperienza</span>
+                </p>
+            </div>
+            <p style="margin-top: 30px;">✨ Non è magia, è tecnologia!</p>
+            <p>🧠 Non pensa come noi, ma <strong>elabora informazioni</strong></p>
+            <p>📚 Ha studiato milioni di testi, immagini, dati</p>
+            <p>🎯 Ci aiuta in compiti quotidiani</p>
+        </div>
+
+        <!-- Slide 3: Dove si nasconde l'IA -->
+        <div class="slide">
+            <h2>🔍 Dove l'IA è già nella vostra vita</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>📱 Smartphone</h3>
+                    <p>Correttore automatico<br>Assistenti vocali<br>Riconoscimento facce</p>
+                </div>
+                <div class="card">
+                    <h3>🗺️ Google Maps</h3>
+                    <p>Calcolo percorsi<br>Traffico in tempo reale<br>Suggerimenti luoghi</p>
+                </div>
+                <div class="card">
+                    <h3>📺 Netflix/YouTube</h3>
+                    <p>Suggerimenti personalizzati<br>"Potrebbe piacerti..."</p>
+                </div>
+                <div class="card">
+                    <h3>📧 Email</h3>
+                    <p>Filtro spam<br>Risposte rapide<br>Organizzazione automatica</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Come parlare con ChatGPT -->
+        <div class="slide">
+            <h2>💬 Come parlare con ChatGPT</h2>
+            <div class="box">
+                <p style="font-size: 1.5em; margin-bottom: 20px;"><strong>4 passi semplicissimi:</strong></p>
+                <ul style="font-size: 1.3em;">
+                    <li><span class="emoji">1️⃣</span> Aprire il browser (Chrome, Firefox...)</li>
+                    <li><span class="emoji">2️⃣</span> Digitare: <span class="highlight">chat.openai.com</span></li>
+                    <li><span class="emoji">3️⃣</span> Cliccare "Try ChatGPT"</li>
+                    <li><span class="emoji">4️⃣</span> Scrivere la domanda e premere Invio</li>
+                </ul>
+            </div>
+            <p style="text-align: center; margin-top: 30px; font-size: 1.4em;">
+                ✨ <strong>È gratis e non serve installare nulla!</strong>
+            </p>
+        </div>
+
+        <!-- Slide 5: Esempi di domande -->
+        <div class="slide">
+            <h2>❓ Esempi di domande utili</h2>
+            <ul>
+                <li><span class="emoji">🍝</span> "Come posso togliere una macchia di vino rosso?"</li>
+                <li><span class="emoji">🌿</span> "Come si cura una pianta di basilico?"</li>
+                <li><span class="emoji">🚶</span> "Quali sono i benefici di una camminata quotidiana?"</li>
+                <li><span class="emoji">🎂</span> "Dammi una ricetta facile per una torta di mele"</li>
+                <li><span class="emoji">📖</span> "Raccontami una curiosità su Messina"</li>
+                <li><span class="emoji">💡</span> "Come funziona il microonde?"</li>
+            </ul>
+            <p style="text-align: center; margin-top: 30px; color: #764ba2;">
+                <strong>Potete chiedere qualsiasi cosa in linguaggio naturale!</strong>
+            </p>
+        </div>
+
+        <!-- Slide 6: Cosa NON fare -->
+        <div class="slide">
+            <h2>⚠️ Cosa NON fare con l'IA</h2>
+            <div class="box" style="border-left-color: #d63031;">
+                <ul>
+                    <li><span class="emoji">❌</span> Non condividere dati personali sensibili (carte di credito, password)</li>
+                    <li><span class="emoji">❌</span> Non usarla per diagnosi mediche (solo il medico decide!)</li>
+                    <li><span class="emoji">❌</span> Non fidarsi ciecamente: verificare informazioni importanti</li>
+                    <li><span class="emoji">❌</span> Non aver paura di sbagliare: l'IA non giudica!</li>
+                </ul>
+            </div>
+            <p style="text-align: center; margin-top: 30px; font-size: 1.5em; color: #00b894;">
+                ✅ <strong>L'IA è uno strumento: usatela con buon senso!</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button onclick="prevSlide()">← Indietro</button>
+        <span class="counter"><span id="current">1</span> / 6</span>
+        <button onclick="nextSlide()">Avanti →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + total) % total;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html>
